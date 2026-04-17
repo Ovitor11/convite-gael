@@ -3,6 +3,7 @@ const telaVideo = document.getElementById("telaVideo");
 const telaConvite = document.getElementById("telaConvite");
 const btnSom = document.getElementById("btnSom");
 const audioConvite = document.getElementById("audioConvite");
+const telaPresente = document.getElementById("telaPresente");
 
 const btnWhatsapp = document.getElementById("btnWhatsapp");
 const btnLocal = document.getElementById("btnLocal");
@@ -51,11 +52,15 @@ video.addEventListener("timeupdate", () => {
 video.addEventListener("ended", iniciarTransicao);
 
 btnWhatsapp.addEventListener("click", () => {
-  const numero = "558198332042";
-  const texto = "Olá! Confirmo presença no aniversário do Gael 🦁🎉";
-  const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  criarFogos();
 
-  window.open(link, "_blank");
+  setTimeout(() => {
+    const numero = "558198332042";
+    const texto = "Olá! Confirmo presença no aniversário do Gael 🦁🎉";
+    const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+    window.open(link, "_blank");
+  }, 800);
 });
 
 btnLocal.addEventListener("click", () => {
@@ -64,5 +69,39 @@ btnLocal.addEventListener("click", () => {
 });
 
 btnPresente.addEventListener("click", () => {
-  alert("Sugestões de presentes: roupinhas, brinquedos educativos ou um mimo especial para o Gael 🎁");
+  telaPresente.classList.remove("escondido");
 });
+
+telaPresente.addEventListener("click", () => {
+  telaPresente.classList.add("escondido");
+});
+
+function criarFogos() {
+  const container = document.getElementById("fogos");
+
+  for (let i = 0; i < 30; i++) {
+    const particula = document.createElement("div");
+    particula.classList.add("particula");
+
+    // posição inicial (centro da tela)
+    particula.style.left = "50%";
+    particula.style.top = "60%";
+
+    // direção aleatória
+    const x = (Math.random() - 0.5) * 200 + "px";
+    const y = (Math.random() - 0.5) * 200 + "px";
+
+    particula.style.setProperty("--x", x);
+    particula.style.setProperty("--y", y);
+
+    // cores safari
+    const cores = ["#f2c94c", "#eb5757", "#6fcf97", "#56ccf2", "#bb6bd9"];
+    particula.style.background = cores[Math.floor(Math.random() * cores.length)];
+
+    container.appendChild(particula);
+
+    setTimeout(() => {
+      particula.remove();
+    }, 800);
+  }
+}
