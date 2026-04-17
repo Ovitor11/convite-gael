@@ -2,6 +2,7 @@ const video = document.getElementById("videoAbertura");
 const telaVideo = document.getElementById("telaVideo");
 const telaConvite = document.getElementById("telaConvite");
 const btnSom = document.getElementById("btnSom");
+const audioConvite = document.getElementById("audioConvite");
 
 const btnWhatsapp = document.getElementById("btnWhatsapp");
 const btnLocal = document.getElementById("btnLocal");
@@ -24,6 +25,10 @@ function iniciarTransicao() {
     video.pause();
     telaVideo.style.display = "none";
     document.body.style.overflow = "auto";
+
+    if (!video.muted) {
+      audioConvite.play().catch(() => {});
+    }
   }, 1000);
 }
 
