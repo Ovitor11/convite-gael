@@ -96,45 +96,103 @@ body {
 
 /* ========= BOTÕES ========= */
 
+/* ========= BOTÕES ========= */
+
 .area-botao {
   position: absolute;
-  border: none;
-  background: transparent;
+  border: 3px solid rgba(255, 248, 235, 0.95);
   cursor: pointer;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.15s ease, background 0.2s ease;
+
+  width: 12%;
+  height: 7%;
+
+  transform: translateX(-50%);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.28),
+    inset 0 2px 6px rgba(255, 255, 255, 0.25),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.18);
 }
 
+/* hover corrigido (não desloca mais) */
 .area-botao:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: scale(1.05);
+  transform: translateX(-50%) scale(1.06);
+  filter: brightness(1.04);
 }
 
+/* clique */
 .area-botao:active {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(0.95);
+  transform: translateX(-50%) scale(0.94);
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.22),
+    inset 0 2px 6px rgba(255, 255, 255, 0.18),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* POSIÇÃO AJUSTADA */
 .botao-whatsapp {
-  left: 22.5%;
-  top: 55.5%;
-  width: 14%;
-  height: 8%;
+  left: 40%;
+  top: 62%;
+  background: radial-gradient(circle at 30% 30%, #8fa16a 0%, #6f8450 58%, #51623a 100%);
 }
 
 .botao-local {
-  left: 43.7%;
-  top: 55.5%;
-  width: 14%;
-  height: 8%;
+  left: 56%;
+  top: 62%;
+  background: radial-gradient(circle at 30% 30%, #eadcc7 0%, #d7c1a3 58%, #b79a78 100%);
 }
 
 .botao-presente {
-  left: 64.5%;
-  top: 55.5%;
-  width: 14%;
-  height: 8%;
+  left: 71%;
+  top: 62%;
+  background: radial-gradient(circle at 30% 30%, #9f643f 0%, #7d4b2f 58%, #5b341f 100%);
+}
+
+/* ÍCONES */
+.botao-whatsapp::before,
+.botao-local::before,
+.botao-presente::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fffaf1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.botao-whatsapp::before {
+  content: "✓";
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.botao-local::before {
+  content: "⌖";
+  font-size: 24px;
+}
+
+.botao-presente::before {
+  content: "🎁";
+  font-size: 22px;
+}
+
+/* brilho */
+.botao-whatsapp::after,
+.botao-local::after,
+.botao-presente::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 25%;
+  left: 50%;
+  top: 18%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .btn-som {
