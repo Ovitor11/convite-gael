@@ -58,7 +58,7 @@ body {
   position: fixed;
   inset: 0;
   min-height: 100vh;
-  background: url("fundosafari.jpeg") center center / cover no-repeat;
+  background: url("fundosafari.jpeg?v=2") center center / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
