@@ -1,32 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(45deg, #3e5f3c, #a3c293);
-  font-family: Arial;
-  text-align: center;
-  color: #2b2b2b;
+  background: black;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
-.convite {
-  background: #fff8e1;
-  padding: 30px;
-  border-radius: 20px;
-  width: 300px;
-  margin: 100px auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+/* ========= TELA DO VÍDEO ========= */
+
+#telaVideo {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: url("fundosafari.jpeg") center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 1s ease;
 }
 
-h1 {
-  color: #4e342e;
+#telaVideo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
 }
 
-button {
-  background: #8d6e63;
-  color: white;
-  padding: 10px 20px;
+#videoAbertura {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+
+#telaVideo.sumindo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========= TELA DO CONVITE ========= */
+
+.escondido {
+  display: none;
+}
+
+#telaConvite {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  background: url("fundosafari.jpeg") center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#telaConvite::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+
+#telaConvite.mostrar {
+  opacity: 1;
+}
+
+.convite-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.imagem-convite {
+  width: 100%;
+  display: block;
+}
+
+/* ========= BOTÕES ========= */
+
+.area-botao {
+  position: absolute;
   border: none;
-  border-radius: 10px;
+  background: transparent;
   cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
 
-button:hover {
-  background: #6d4c41;
+.area-botao:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.05);
+}
+
+.area-botao:active {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(0.95);
+}
+
+.botao-whatsapp {
+  left: 22.5%;
+  top: 55.5%;
+  width: 14%;
+  height: 8%;
+}
+
+.botao-local {
+  left: 43.7%;
+  top: 55.5%;
+  width: 14%;
+  height: 8%;
+}
+
+.botao-presente {
+  left: 64.5%;
+  top: 55.5%;
+  width: 14%;
+  height: 8%;
+}
+
+.btn-som {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn-som:hover {
+  transform: scale(1.04);
+}
+
+.btn-som:active {
+  transform: scale(0.96);
+}
+
+/* ========= RESPONSIVO ========= */
+
+@media (max-width: 768px) {
+  #telaVideo {
+    background: black;
+  }
+
+  #telaVideo::after {
+    background: none;
+  }
+
+  #telaConvite {
+    background: black;
+  }
+
+  #telaConvite::after {
+    background: none;
+  }
 }
