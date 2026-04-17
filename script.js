@@ -15,6 +15,11 @@ function iniciarTransicao() {
   if (transicaoIniciada) return;
   transicaoIniciada = true;
 
+  if (!video.muted) {
+    audioConvite.currentTime = 0;
+    audioConvite.play().catch(() => {});
+  }
+
   telaConvite.classList.remove("escondido");
 
   requestAnimationFrame(() => {
@@ -26,10 +31,6 @@ function iniciarTransicao() {
     video.pause();
     telaVideo.style.display = "none";
     document.body.style.overflow = "auto";
-
-    if (!video.muted) {
-      audioConvite.play().catch(() => {});
-    }
   }, 1000);
 }
 
@@ -79,29 +80,32 @@ telaPresente.addEventListener("click", () => {
 function criarFogos() {
   const container = document.getElementById("fogos");
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 60; i++) { 
     const particula = document.createElement("div");
     particula.classList.add("particula");
 
-    // posição inicial (centro da tela)
-    particula.style.left = "50%";
-    particula.style.top = "60%";
 
-    // direção aleatória
-    const x = (Math.random() - 0.5) * 200 + "px";
-    const y = (Math.random() - 0.5) * 200 + "px";
+    particula.style.left = "50%";
+    particula.style.top = "62%";
+
+    const x = (Math.random() - 0.5) * 400 + "px";
+    const y = (Math.random() - 0.5) * 400 + "px";
 
     particula.style.setProperty("--x", x);
     particula.style.setProperty("--y", y);
 
-    // cores safari
-    const cores = ["#f2c94c", "#eb5757", "#6fcf97", "#56ccf2", "#bb6bd9"];
+    const cores = ["#FFD700", "#FF4D4D", "#6FCF97", "#56CCF2", "#BB6BD9", "#F2994A"];
     particula.style.background = cores[Math.floor(Math.random() * cores.length)];
+
+  
+    const tamanho = Math.random() * 10 + 6; 
+    particula.style.width = tamanho + "px";
+    particula.style.height = tamanho + "px";
 
     container.appendChild(particula);
 
     setTimeout(() => {
       particula.remove();
-    }, 800);
+    }, 1000);
   }
 }
