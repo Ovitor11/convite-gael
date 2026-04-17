@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Convite do Gael</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="convite">
-  <h1>🦁 Safari do Gael</h1>
-  <h2>1 aninho 🎉</h2>
+  <section id="telaVideo" class="tela-video">
+    <video id="videoAbertura" autoplay muted playsinline preload="auto">
+  <source src="abertura.mp4" type="video/mp4" />
+  Seu navegador não suporta vídeo.
+</video>
 
-  <p>Venha comemorar essa aventura!</p>
+<button id="btnSom" class="btn-som" type="button">🔊 Ativar som</button>
+  </section>
 
-  <p>📅 20 de Abril - 16h</p>
-  <p>📍 Casa da Família</p>
+  <section id="telaConvite" class="tela-convite escondido">
+    <div class="convite-container">
+      <img src="convite.jpeg" alt="Convite do Gael" class="imagem-convite" />
 
-  <div id="contador"></div>
+      <button class="area-botao botao-whatsapp" id="btnWhatsapp" aria-label="Confirmar presença"></button>
+      <button class="area-botao botao-local" id="btnLocal" aria-label="Acessar localização"></button>
+      <button class="area-botao botao-presente" id="btnPresente" aria-label="Sugestões de presente"></button>
+    </div>
+  </section>
 
-  <button onclick="confirmar()">Confirmar Presença</button>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
