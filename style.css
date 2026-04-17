@@ -16,7 +16,7 @@ body {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: url("fundosafari.jpeg?v=2") center center / cover no-repeat;
+  background: url("fundosafari.jpeg") center center / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ body {
   position: fixed;
   inset: 0;
   min-height: 100vh;
-  background: url("fundosafari.jpeg?v=2") center center / cover no-repeat;
+  background: url("fundosafari.jpeg") center center / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,6 +216,58 @@ body {
 
 .btn-som:active {
   transform: scale(0.96);
+}
+
+/* TELA DE PRESENTE */
+.tela-presente {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.tela-presente img {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 12px;
+}
+
+/* esconder */
+.escondido {
+  display: none;
+}
+
+/* CONTAINER DOS FOGOS */
+#fogos {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+/* PARTÍCULAS */
+.particula {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: explodir 0.8s ease-out forwards;
+}
+
+/* ANIMAÇÃO */
+@keyframes explodir {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+  }
 }
 
 /* ========= RESPONSIVO ========= */
