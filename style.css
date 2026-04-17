@@ -16,7 +16,7 @@ body {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: url("fundosafari.jpeg") center center / cover no-repeat;
+  background: url("fundosafari.jpeg?v=2") center center / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
