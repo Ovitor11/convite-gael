@@ -1,37 +1,68 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convite do Gael</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+const video = document.getElementById("videoAbertura");
+const telaVideo = document.getElementById("telaVideo");
+const telaConvite = document.getElementById("telaConvite");
+const btnSom = document.getElementById("btnSom");
+const audioConvite = document.getElementById("audioConvite");
 
-  <section id="telaVideo" class="tela-video">
-    <video id="videoAbertura" autoplay muted playsinline preload="auto">
-  <source src="abertura.mp4" type="video/mp4" />
-  Seu navegador não suporta vídeo.
-</video>
+const btnWhatsapp = document.getElementById("btnWhatsapp");
+const btnLocal = document.getElementById("btnLocal");
+const btnPresente = document.getElementById("btnPresente");
 
-<button id="btnSom" class="btn-som" type="button">🔊 Ativar som</button>
-  </section>
+let transicaoIniciada = false;
 
-  <section id="telaConvite" class="tela-convite escondido">
-    <div class="convite-container">
-      <img src="convite.jpeg" alt="Convite do Gael" class="imagem-convite" />
+function iniciarTransicao() {
+  if (transicaoIniciada) return;
+  transicaoIniciada = true;
 
-      <button class="area-botao botao-whatsapp" id="btnWhatsapp" aria-label="Confirmar presença"></button>
-      <button class="area-botao botao-local" id="btnLocal" aria-label="Acessar localização"></button>
-      <button class="area-botao botao-presente" id="btnPresente" aria-label="Sugestões de presente"></button>
-    </div>
-  </section>
+  telaConvite.classList.remove("escondido");
 
-  <audio id="audioConvite" preload="auto">
-  <source src="audio-convite.mp3" type="audio/mpeg">
-  Seu navegador não suporta áudio.
-</audio>
+  requestAnimationFrame(() => {
+    telaConvite.classList.add("mostrar");
+    telaVideo.classList.add("sumindo");
+  });
 
-  <script src="script.js"></script>
-</body>
-</html>
+  setTimeout(() => {
+    video.pause();
+    telaVideo.style.display = "none";
+    document.body.style.overflow = "auto";
+
+    if (!video.muted) {
+      audioConvite.play().catch(() => {});
+    }
+  }, 1000);
+}
+
+btnSom.addEventListener("click", () => {
+  video.muted = false;
+  video.play();
+  btnSom.style.display = "none";
+});
+
+video.addEventListener("timeupdate", () => {
+  if (!video.duration || transicaoIniciada) return;
+
+  const tempoRestante = video.duration - video.currentTime;
+
+  if (tempoRestante <= 0.6) {
+    iniciarTransicao();
+  }
+});
+
+video.addEventListener("ended", iniciarTransicao);
+
+btnWhatsapp.addEventListener("click", () => {
+  const numero = "558198332042";
+  const texto = "Olá! Confirmo presença no aniversário do Gael 🦁🎉";
+  const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+  window.open(link, "_blank");
+});
+
+btnLocal.addEventListener("click", () => {
+  const linkMaps = "https://maps.app.goo.gl/dZK3eFPxo3Fr3zGv5?g_st=aw";
+  window.open(linkMaps, "_blank");
+});
+
+btnPresente.addEventListener("click", () => {
+  alert("Sugestões de presentes: roupinhas, brinquedos educativos ou um mimo especial para o Gael 🎁");
+});
