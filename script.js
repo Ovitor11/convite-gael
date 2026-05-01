@@ -129,5 +129,7 @@ function mostrarGif() {
     setTimeout(() => {
       gifBoasVindas.classList.add("escondido");
     }, 600);
+
+    <!-- update -->
   }, 7000);
 }
