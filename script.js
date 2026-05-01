@@ -4,6 +4,7 @@ const telaConvite = document.getElementById("telaConvite");
 const btnSom = document.getElementById("btnSom");
 const audioConvite = document.getElementById("audioConvite");
 const telaPresente = document.getElementById("telaPresente");
+const gifBoasVindas = document.getElementById("gifBoasVindas");
 
 const btnWhatsapp = document.getElementById("btnWhatsapp");
 const btnLocal = document.getElementById("btnLocal");
@@ -26,6 +27,8 @@ function iniciarTransicao() {
     telaConvite.classList.add("mostrar");
     telaVideo.classList.add("sumindo");
   });
+
+  setTimeout(mostrarGif, 500);
 
   setTimeout(() => {
     video.pause();
@@ -94,11 +97,12 @@ function criarFogos() {
     particula.style.setProperty("--x", x);
     particula.style.setProperty("--y", y);
 
+    
     const cores = ["#FFD700", "#FF4D4D", "#6FCF97", "#56CCF2", "#BB6BD9", "#F2994A"];
     particula.style.background = cores[Math.floor(Math.random() * cores.length)];
 
-  
-    const tamanho = Math.random() * 10 + 6; 
+
+    const tamanho = Math.random() * 10 + 6; // 
     particula.style.width = tamanho + "px";
     particula.style.height = tamanho + "px";
 
@@ -108,4 +112,22 @@ function criarFogos() {
       particula.remove();
     }, 1000);
   }
+}
+
+function mostrarGif() {
+  if (!gifBoasVindas) return;
+
+  gifBoasVindas.classList.remove("escondido");
+
+  setTimeout(() => {
+    gifBoasVindas.classList.add("ativo");
+  }, 50);
+
+  setTimeout(() => {
+    gifBoasVindas.classList.remove("ativo");
+
+    setTimeout(() => {
+      gifBoasVindas.classList.add("escondido");
+    }, 600);
+  }, 7000);
 }
